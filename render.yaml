@@ -1,0 +1,16 @@
+services:
+  - type: web
+    name: gemini-finance-analyzer
+    env: node
+    plan: free
+    buildCommand: cd client && npm install --include=dev && npm run build && cd ../server && npm install
+    startCommand: cd server && npm run start
+    envVars:
+      - key: NODE_VERSION
+        value: 20
+      - key: GEMINI_API_KEY
+        sync: false
+      - key: GEMINI_MODEL
+        value: models/gemini-2.5-flash
+      - key: PORT
+        sync: false
